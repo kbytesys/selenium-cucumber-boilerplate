@@ -1,11 +1,21 @@
 const { setWorldConstructor } = require('cucumber');
 const { getDriverInstance } = require('./driver_helper');
 
-function SeleniumCucumberWorld({attach, parameters}) {
-  this.attach = attach;
-  this.parameters = parameters;
-  getDriverInstance("nobody");
-  process.exit();
+class CustomWorld {
+  constructor(args) {
+    this.variable = 0;
+    this.attach = args.attach;
+    this.parameters = args.parameters;
+    console.log("iugviugg")
+  }
+
+  setTo(number) {
+    this.variable = number;
+  }
+
+  incrementBy(number) {
+    this.variable += number;
+  }
 }
 
-setWorldConstructor(SeleniumCucumberWorld);
+setWorldConstructor(CustomWorld)
