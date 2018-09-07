@@ -1,21 +1,33 @@
 const { setWorldConstructor } = require('cucumber');
-const { getDriverInstance } = require('./driver_helper');
+var {AfterAll, BeforeAll} = require('cucumber');
+var { start, install } = require('selenium-standalone');
+
+var webdriverio = require('webdriverio');
 
 class CustomWorld {
   constructor(args) {
-    this.variable = 0;
     this.attach = args.attach;
     this.parameters = args.parameters;
-    console.log("iugviugg")
-  }
 
-  setTo(number) {
-    this.variable = number;
-  }
-
-  incrementBy(number) {
-    this.variable += number;
+    this.driver = webdriverio.remote({
+      desiredCapabilities: {browserName: 'chrome'}
+    });
   }
 }
 
-setWorldConstructor(CustomWorld)
+setWorldConstructor(CustomWorld);
+
+BeforeAll({timeout: 60 * 10000}, async function() {
+  return new Promise((resolve) => install({logger: function(message) {
+    console.log(message);
+  }}, () => start({logger: function(message) {
+    console.log(message);
+  }}, (err, child) => {
+    global.selenium_process = child;
+    resolve();
+  })));
+});
+
+AfterAll(() => {
+  global.selenium_process.kill();
+});

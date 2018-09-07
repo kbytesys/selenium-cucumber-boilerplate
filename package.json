@@ -3,11 +3,7 @@
   "version": "0.0.1",
   "description": "A easy to use boilerplate for a BDD test suite with selenium and cucumber",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "install:webdriver:chrome": "npm install --no-save chromedriver",
-    "install:webdriver:firefox": "npm install --no-save geckodriver",
-    "install:webdriver:phantomjs": "npm install --no-save phantomjs-prebuilt",
-    "install:webdrivers": "npm-run-all install:webdriver:*"
+    "test": "cucumber-js -r utils -r examples/simple/features examples/simple/features"
   },
   "repository": {
     "type": "git",
@@ -30,7 +26,9 @@
     "cucumber": "^4.2.1",
     "cucumber-html-reporter": "^4.0.4",
     "selenium": "^2.20.0",
-    "selenium-webdriver": "^4.0.0-alpha.1"
+    "selenium-standalone": "^6.15.2",
+    "selenium-webdriver": "^4.0.0-alpha.1",
+    "webdriverio": "^4.13.2"
   },
   "devDependencies": {
     "eslint": "^5.2.0",

@@ -2,8 +2,9 @@ const { Given, When, Then } = require('cucumber');
 const { expect } = require('chai');
 
 Given('Example', async function() {
-  console.error("aaaaaaaaaaaaa");
-  console.log(this.parameters);
-  console.log(this);
-  this.setTo(5);
+  console.log(this.driver.inspect());
+  return this.driver.init().url('https://duckduckgo.com/').getTitle().then(function(title) {
+    console.log('Title is: ' + title);
+    // outputs: "Title is: WebdriverIO (Software) at DuckDuckGo"
+  }).end();
 });
