@@ -1,0 +1,10 @@
+language: python
+dist: trusty
+addons:
+  sonarcloud:
+    organization: "kbytesys-github"
+    token:
+      secure: $SONAR_TOKEN
+script:
+  - sonar-scanner
+
