@@ -10,5 +10,6 @@ cache:
   directories:
   - "node_modules"
 script:
+  - ls
   - sonar-scanner
 
