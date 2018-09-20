@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "A easy to use boilerplate for a BDD test suite with selenium and cucumber",
   "scripts": {
+    "eslint": "eslint -f json -o report_eslint.json .",
     "test": "cucumber-js -r utils -r examples/simple/features examples/simple/features"
   },
   "repository": {
